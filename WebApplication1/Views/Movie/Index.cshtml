@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebApplication1.Models.Movie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Model => Model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.url)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m=>item.title)
+                </td>
+                <td>
+                    <img src="@item.url" alt="@item.title" width="150" height="150">
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    @using (Html.BeginForm("Delete", "Movie",new {id=item.id}, FormMethod.Post))
+                    {
+                        <button type="submit" class="btn btn-dangerx">delete</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

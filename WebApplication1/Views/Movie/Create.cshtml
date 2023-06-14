@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+@*<form method="post">
+    <button asp-controller="Home" asp-action="Index">Click Me</button>
+    <input type="image" src="..." alt="Or Click Me" asp-controller="Home"
+           asp-action="Index">
+</form>*@
+
+@using (Html.BeginForm("Create", "Movie", FormMethod.Post))
+{
+    <div>
+        <input type="text" name ="title" placeholder="title"  value=""/> 
+    </div>
+    <div>
+        <input type="text" name="url" value="" placeholder="url"></input>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">submit</button>
+    </div>
+}
+        
+
+<div>
+    @*<a asp-page="./Edit" asp-route-id="@model.id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>*@
+</div>
