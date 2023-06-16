@@ -1,95 +1,116 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
+using WebApplication1.Repositories;
+using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
 {
     public class MovieController : Controller
     {
-        //prop
-        private readonly DataContext _dataContext;
-        //const
-        public MovieController(DataContext dataContext)
+        private readonly IMovieService _movieService;
+        public MovieController(IMovieService movieService)
         {
-            _dataContext= dataContext;
+            this._movieService = movieService;
         }
-
-        // GET: MovieController
-        public ActionResult Index()
-        {
-            var movies = _dataContext.Movie.ToList();
-            return View(movies);
-        }
-
-        // GET: MovieController/Details/5
-        public ActionResult Details(int id)
-        {
-            var movie = _dataContext.Movie.Find(id);
-            return View(movie);
-        }
-
-        // GET: MovieController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: MovieController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Movie model)
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
         {
             try
             {
-                var entity = _dataContext.Movie.Add(model);
-                _dataContext.SaveChanges();
-                return RedirectToAction("Index");
+                var result = await _movieService.GetAll();
+                return Ok(new { isSuccess = true, data = result });
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return new JsonResult(new
+                {
+                    isSuccess = false,
+                    statusCode = 500,
+                    message = ex.Message
+                });
             }
         }
-
-        // GET: MovieController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            var movie = _dataContext.Movie.Find(id);
-            return View(movie);
-        }
-
-        // POST: MovieController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Movie model)
+        [HttpGet("GetById")]
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
-                var entity = _dataContext.Movie.Update(model);
-                _dataContext.SaveChanges();
-                return RedirectToAction("Index");
+                var result = await _movieService.GetById(id);
+                return Ok(new { isSuccess = true, data = result });
             }
-                
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return new JsonResult(new
+                {
+                    isSuccess = false,
+                    statusCode = 500,
+                    message = ex.Message
+                });
+
+
             }
         }
-
-        // POST: MovieController/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id)
+        [HttpPost("Add")]
+        public async Task<IActionResult> Add(Movie model)
         {
             try
             {
-                var entity = _dataContext.Movie.Remove(new Movie() {id = id});
-                _dataContext.SaveChanges();
-                return RedirectToAction("Index");
+                var result = await _movieService.Add(model);
+                return Ok(new { isSuccess = true });
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return new JsonResult(new
+                {
+                    isSuccess = false,
+                    statusCode = 500,
+                    message = ex.Message
+                });
+
+
             }
         }
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                var result = await _movieService.Delete(id);
+                return Ok(new { isSuccess = true });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new
+                {
+                    isSuccess = false,
+                    statusCode = 500,
+                    message = ex.Message
+                });
+
+
+            }
+        }
+        [HttpPatch("Update")]
+        public async Task<IActionResult> Update([FromBody] Movie model)
+        {
+            try
+            {
+                var result = await _movieService.Update(model);
+                return Ok(new { isSuccess = true });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new
+                {
+                    isSuccess = false,
+                    statusCode = 500,
+                    message = ex.Message
+                });
+            }
+        }
+
+
+
     }
+
 }

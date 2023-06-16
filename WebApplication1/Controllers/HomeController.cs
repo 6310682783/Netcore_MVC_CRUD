@@ -7,17 +7,17 @@ namespace WebApplication1.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly DataContext _dataContext;
+        
 
-        public HomeController(ILogger<HomeController> logger, DataContext dataContext)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _dataContext = dataContext;
+          
         }
 
         public IActionResult Index()
         {
-            var movie = _dataContext.Movie.ToList();
+            
             return View();
         }
 
