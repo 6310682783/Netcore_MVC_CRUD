@@ -5,6 +5,7 @@ using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
 {
+    [Route("[controller]")]
     public class MovieController : Controller
     {
         private readonly IMovieService _movieService;
