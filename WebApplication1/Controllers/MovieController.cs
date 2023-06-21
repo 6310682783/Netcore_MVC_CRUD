@@ -52,7 +52,7 @@ namespace WebApplication1.Controllers
             }
         }
         [HttpPost("Add")]
-        public async Task<IActionResult> Add(Movie model)
+        public async Task<IActionResult> Add([FromForm] Movie model)
         {
             try
             {

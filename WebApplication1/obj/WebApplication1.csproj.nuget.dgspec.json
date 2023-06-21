@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\KP\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
+    "D:\\kp\\Movie_Api\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "D:\\KP\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
+    "D:\\kp\\Movie_Api\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\KP\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "D:\\kp\\Movie_Api\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "D:\\KP\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "D:\\kp\\Movie_Api\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "D:\\Users\\cf304591\\.nuget\\packages\\",
-        "outputPath": "D:\\KP\\WebApplication1\\WebApplication1\\obj\\",
+        "outputPath": "D:\\kp\\Movie_Api\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "D:\\Users\\cf304591\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
