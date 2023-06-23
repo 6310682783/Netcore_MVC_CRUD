@@ -48,6 +48,8 @@ namespace WebApplication1.Services
             var model = await movieRepository.GetById(movie.id);
             model.title = movie?.title;
             model.url = movie?.url;
+            model.description = movie?.description;
+            model.video = movie?.video;
             var result = await movieRepository.Update(model);
             return (result > 0);
         }

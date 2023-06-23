@@ -20,8 +20,8 @@ namespace WebApplication1.Repositories
         }
         public override async Task<int> Add(Movie model)
         {
-            var sqlCommand = string.Format(@"INSERT INTO [dbo].[Movie]([title],[url])
-                                            VALUES (@title,@url)");
+            var sqlCommand = string.Format(@"INSERT INTO [dbo].[Movie]([title],[url],[description],[video])
+                                            VALUES (@title,@url,@description,@video)");
             using (var db = new SqlConnection(connectionString))
             {
                 return await db.ExecuteAsync(sqlCommand, MappingParameter(model));
@@ -41,7 +41,9 @@ namespace WebApplication1.Repositories
         {
             var sqlCommand = string.Format(@"UPDATE [dbo].[Movie]
                                                SET [url] = @url 
-                                                ,[title] = @title 
+                                                ,[title] = @title
+                                                ,[description] = @description
+                                                ,[video] = @video
                                                  WHERE [id] = @id");
             using (var db = new SqlConnection(connectionString))
             {
@@ -56,6 +58,8 @@ namespace WebApplication1.Repositories
                 Id = model.id,
                 Title = model.title,
                 Url = model.url,
+                Description = model.description,
+                Video = model.video,
             };
         }
     }

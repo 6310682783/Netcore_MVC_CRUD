@@ -31,7 +31,7 @@ namespace WebApplication1.Controllers
                 });
             }
         }
-        [HttpGet("GetById")]
+        [HttpGet("GetById/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             try
@@ -71,13 +71,13 @@ namespace WebApplication1.Controllers
 
             }
         }
-        [HttpDelete("Delete")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
                 var result = await _movieService.Delete(id);
-                return Ok(new { isSuccess = true });
+                return Ok(new { isSuccess = result });
             }
             catch (Exception ex)
             {
@@ -92,7 +92,7 @@ namespace WebApplication1.Controllers
             }
         }
         [HttpPatch("Update")]
-        public async Task<IActionResult> Update([FromBody] Movie model)
+        public async Task<IActionResult> Update([FromForm] Movie model)
         {
             try
             {
