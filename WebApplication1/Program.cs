@@ -28,6 +28,11 @@ builder.Services.AddCors(options =>
                       });
 });
 
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MovieDB"));
+});
+
 builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 {
     var serviceAssembly = typeof(Movie).Assembly;

@@ -11,6 +11,7 @@ namespace WebApplication1.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
+
         }
 
         public DbSet<Movie> Movie { get; set; }

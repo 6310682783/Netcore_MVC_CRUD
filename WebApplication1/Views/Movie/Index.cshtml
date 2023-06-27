@@ -36,7 +36,7 @@
                     <a asp-action="Details" asp-route-id="@item.id">Details</a> |
                     @using (Html.BeginForm("Delete", "Movie",new {id=item.id}, FormMethod.Post))
                     {
-                        <button type="submit" class="btn btn-dangerx">delete</button>
+                        <button type="submit" class="btn btn-warning btn-sm">delete</button>
                     }
                 </td>
             </tr>
